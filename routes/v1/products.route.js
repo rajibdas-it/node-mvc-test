@@ -1,6 +1,7 @@
 const express = require("express");
 const productController = require("../../controller/products.controller");
 const viewCount = require("../../middleware/viewCount");
+const limiter = require("../../middleware/limiter");
 const router = express.Router();
 
 router
@@ -12,7 +13,7 @@ router
 
 router
   .route("/:id")
-  .get(viewCount, productController.getSingleProduct)
+  .get(productController.getSingleProduct)
   .patch((req, res) => {
     res.send("product updated");
   })
